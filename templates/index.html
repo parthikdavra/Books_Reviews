@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}
+Index
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h1 class="page-header">User Details for LogIn</h1>
+</div>
+<form action="{{ url_for('login') }}" class="form-group" method="POST">
+<div class="container">
+    <label for="username">Enetr User name</label>
+    <input type="text" name="username" placeholder="Enter User Name" class="form-control">
+    <label for="password">Enter password</label>
+    <input type="password" name="password" placeholder="Enter the password" class="form-control"><br/>
+    <button class="btn btn-primary" type="submit">LogIn</button>
+</div>
+</form>
+{% if error %}
+<p class="alert alert-danger">{{error}}</p>
+{% elif success %}
+<p class="alert alert-success">{{success}}<br>
+    Now you can login.
+</p>
+{% endif %}
+{% endblock %}

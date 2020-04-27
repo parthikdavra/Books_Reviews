@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}
+login
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="rows">
+        <div class="col-lg-12">
+<h1>You Successfully Log In.</h1>
+<h3> active User Information.</h3><br/>
+<ul class="list-group">
+    <li class="list-group-item">Id:{{id}}</li>
+    <li class="list-group-item">UserName:{{name}}</li>
+    <li class="list-group-item">Password:{{password}}</li>
+</ul>
+</div>
+<div>
+    <h2>Now You Can Find any books you want.</h2>
+    <h4>Enter any one following detail to search your book.</h4>
+    {% if error %}
+    <p class="alert alert-danger">{{error}}</p>
+    {% endif %}
+    <form action="{{ url_for('search') }} " method="POST">
+        <label for="isbn">Enter ISBN Number:</label>
+        <input type="text" name="isbn" class="form-control">
+        <br/> OR <br/>
+        <label for="title">Enter Book Name:</label>
+        <input type="text" name="title" class="form-control">
+        <br/> OR <br/>
+        <label for="author">Enter Author Name of Book:</label>
+        <input type="text" name="author" class="form-control"><br/>
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-search"></span> Search
+        </button>
+    </form>
+</div>
+</div>
+</div>
+<br/>
+
+{% endblock %}

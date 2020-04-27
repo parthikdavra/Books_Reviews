@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}
+BookList
+{% endblock %}
+{% block body %}
+
+{% if book %}
+{% for i in book %}
+<div></div>
+<h2>Result of Books with your search:</h2>
+<ul>
+    <li>ISBN:{{i.isbn}}</li>
+    <li>title:{{i.title}}</li>
+    <li>author:{{i.author}}</li>
+    <li>year:{{i.year}}</li>
+</ul>
+</div>
+<div>
+<h4>Add Your Rating And Review about this Book!!!</h4>
+
+    <form action="{{ url_for('review', isbn_no=i.isbn) }}" method="POST">
+        <input name="rating" placeholder="Give Your Rating Here..."></input><br/>
+        <br/>
+        <textarea name="description" placeholder="Enter Your Review Here..." cols="40" rows="5"></textarea>
+        <button class="btn btn-primary" value="i.isbn">Review Of {{i.isbn}}</button>
+    </form>
+</div>
+{% endfor %}
+{% endif %}
+<div class="container">
+    {% if success %}    
+    <p class="alert alert-success">{{success}}</p><br/>
+    <button class="btn btn-info">
+    <a href="{{ url_for('book_review',isbn_no=isbn_no) }}">Click Here To See All infortmation About this Book.</a>
+    </button>
+    {% elif error %}
+    <p class="alert alert-danger">{{error}}</p>
+    <button class="btn btn-info">
+    <a href="{{ url_for('book_review',isbn_no=isbn_no) }}">Click Here To See All infortmation About this Book.</a>
+    </button>
+    {% endif %}
+    {% if error_empty %}
+    <p class="alert alert-danger">{{error_empty}}</p>
+    {% endif %} 
+</div>
+   
+<button class="btn btn-primary">
+    <a href="{{ url_for('logout') }}"></a>Logout
+</button>    
+
+{% endblock %}
